@@ -1,0 +1,14 @@
+task 
+
+--------
+vpc ---- task  ------done
+maven istallation ------ another region  -----done
+sonarqube installation --------- 
+tomcat installation -----------done
+
+
+
+seperte and all should be in different region
+
+
+

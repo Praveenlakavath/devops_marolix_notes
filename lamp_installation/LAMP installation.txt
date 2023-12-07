@@ -1,0 +1,65 @@
+3. Install LAMP Components
+Update the System:
+
+bash
+Copy code
+sudo apt update && sudo apt upgrade -y
+Install Apache:
+
+bash
+Copy code
+sudo apt install apache2 -y
+Start Apache:
+
+bash
+Copy code
+sudo systemctl start apache2
+Enable Apache to Start on Boot:
+
+bash
+Copy code
+sudo systemctl enable apache2
+Install MySQL:
+
+bash
+Copy code
+sudo apt install mysql-server -y
+Secure MySQL Installation: Run the MySQL security script and follow the prompts to secure your MySQL installation:
+
+bash
+Copy code
+sudo mysql_secure_installation
+Install PHP and Required Modules:
+
+bash
+Copy code
+sudo apt install php libapache2-mod-php php-mysql -y
+Restart Apache for PHP Integration:
+
+bash
+Copy code
+sudo systemctl restart apache2
+4. Test LAMP Installation
+Create a PHP Info File:
+Create a PHP file in the Apache web root directory to test PHP:
+
+bash
+Copy code
+sudo nano /var/www/html/info.php
+Add the following line to the file:
+
+php
+Copy code
+<?php phpinfo(); ?>
+Save and Close the File (in Nano, it's Ctrl + X, then Y to confirm, and Enter to save).
+
+Access the PHP Info File: Open a web browser and enter your EC2 instance's public IP address followed by /info.php (e.g., http://your-instance-public-ip/info.php). You should see the PHP info page displaying information about your PHP installation.
+
+5. Additional Configuration (Optional)
+Virtual Hosts: Set up virtual hosts in Apache to host multiple websites on the same server.
+Firewall Configuration: Adjust firewall settings (ufw) if necessary to allow or restrict traffic.
+Similarly to the Amazon Linux guide, this is a basic setup. For production environments or specific use cases, additional configurations and security measures may be needed. Always ensure you follow best practices for securing your server and applications.
+
+
+
+

@@ -1,0 +1,61 @@
+sudo apt update && sudo apt upgrade -y
+sudo apt install apache2 -y
+sudo systemctl enable apache2
+sudo systemctl start apache2
+sudo apt install mysql-server -y
+sudo mysql_secure_installation
+sudo apt install php libapache2-mod-php php-mysql -y
+sudo systemctl restart apache2
+sudo nano /var/www/html/info.php
+
+<?php
+phpinfo();
+?>
+
+
+echo "take the ipadderss of instance followedby ip/info.php"
+
+ echo 'wordpress installation'
+
+sudo mysql -u root -p
+
+CREATE DATABASE newdatabase_db;
+
+CREATE USER 'praveen'@'localhost' IDENTIFIED BY 'Praveen@7989';
+
+GRANT ALL ON newdatabase_db.* TO 'praveen'@'localhost';
+FLUSH PRIVILEGES;
+EXIT;
+
+cd /tmp
+wget https://wordpress.org/latest.tar.gz
+
+tar -xvzf latest.tar.gz
+
+sudo rsync -avP /tmp/wordpress/ /var/www/html/
+
+sudo chown -R www-data:www-data /var/www/html/
+sudo chmod -R 755 /var/www/html/
+
+
+cd /var/www/html/
+sudo mv wp-config-sample.php wp-config.php
+
+sudo nano wp-config.php
+
+
+define('DB_NAME', 'newdatabase_db');
+define('DB_USER', 'praveen');
+define('DB_PASSWORD', 'Praveen@7989');
+define('DB_HOST', 'localhost');
+
+
+
+
+
+
+
+
+
+
+

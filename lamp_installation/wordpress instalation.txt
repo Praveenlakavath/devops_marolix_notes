@@ -1,0 +1,75 @@
+wordpress setup
+
+Follow the steps outlined earlier to set up a LAMP stack on your Ubuntu EC2 instance.
+
+2. Create a MySQL Database for WordPress
+Log in to MySQL:
+
+bash
+Copy code
+sudo mysql -u root -p
+Enter the MySQL root password when prompted.
+
+Create a Database: Replace wordpress_db with your desired database name.
+
+sql
+Copy code
+CREATE DATABASE newdatabase_db;
+Create a MySQL User: Replace wordpress_user and password with your preferred username and password.
+
+sql
+Copy code
+CREATE USER 'praveen'@'localhost' IDENTIFIED BY 'Praveen@7989';
+Grant Permissions to the User on the Database:
+
+sql
+Copy code
+GRANT ALL ON newdatabase_db.* TO 'praveen'@'localhost';
+FLUSH PRIVILEGES;
+EXIT;
+3. Install WordPress
+Download WordPress:
+
+bash
+Copy code
+cd /tmp
+wget https://wordpress.org/latest.tar.gz
+Extract the Archive:
+
+bash
+Copy code
+tar -xvzf latest.tar.gz
+Move WordPress Files to Apache Root Directory:
+
+bash
+Copy code
+sudo rsync -avP /tmp/wordpress/ /var/www/html/
+Set Permissions: Adjust permissions to ensure Apache can write to the necessary files and directories.
+
+bash
+Copy code
+sudo chown -R www-data:www-data /var/www/html/
+sudo chmod -R 755 /var/www/html/
+Rename Configuration File:
+
+bash
+Copy code
+cd /var/www/html/
+sudo mv wp-config-sample.php wp-config.php
+Configure WordPress:
+Edit the wp-config.php file and add your MySQL database information:
+
+bash
+Copy code
+sudo nano wp-config.php
+Update the following lines with your database details:
+
+php
+Copy code
+define('DB_NAME', 'newdatabase_db');
+define('DB_USER', 'praveen');
+define('DB_PASSWORD', 'Praveen@7989');
+define('DB_HOST', 'localhost');
+Access WordPress Installation: Go to your EC2 instance's public IP address in a web browser (http://your-instance-public-ip) to complete the WordPress installation.
+
+Follow the WordPress Setup Wizard: You'll be prompted to set up your admin account, site title, and other configurations.

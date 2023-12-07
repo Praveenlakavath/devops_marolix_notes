@@ -1,0 +1,12 @@
+node {
+    def mvnHome
+    stage('git checkout') { // for display purposes
+        // Get some code from a GitHub repositor//
+        git 'https://github.com/Praveenlakavath/maven-web-application.git'
+     }
+   stage('Building package'){
+      def mavenHome = toolname:"maven 3.9.5",type:"maven"
+      def mavenCMD = "${mavenHome}/bin/mvn"
+      sh "${mavenCMD} cleanpackage"
+     }
+}
